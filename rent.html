@@ -229,13 +229,16 @@
 
     function loadRentLocationByFile(fileName) {
         delRentLocation();
+        //新建来存储csv数据
         var rent_total = new Map();
         $.get(fileName, function(data) {
             data = data.split("\n");
             data.forEach(function(item, index) {
+                //遍历csv文件中的元素，取第0和2个位置的数据
                 rent_total.set(item.split(",")[0],item.split(",")[2]);               
             });
             rent_total.forEach(function(value,key,map) {
+                //遍历字典中的key和value调用函数在地图上绘点
                 addMarkerByAddress(key,value);
                 //alert(value,key);
             });
